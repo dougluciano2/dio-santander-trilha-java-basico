@@ -7,14 +7,21 @@ public class Conta {
     private Integer numeroConta;
     private String agenciaConta;
     private Double saldo;
+    private final  Double SALDO_INICIAL = 370.0;
 
-    public Conta(){}
+    private Pessoa cleinte;
 
-    public Conta(String agenciaConta, Integer numeroConta, Double saldo) {
-        this.agenciaConta = agenciaConta;
-        this.numeroConta = numeroConta;
-        this.saldo = saldo;
+    public Conta(){
+        this.saldo = SALDO_INICIAL;
     }
+
+    public Conta(String agenciaConta, Pessoa cleinte, Integer numeroConta) {
+        this.agenciaConta = agenciaConta;
+        this.cleinte = cleinte;
+        this.numeroConta = numeroConta;
+        this.saldo = SALDO_INICIAL;
+    }
+
 
     public String getAgenciaConta() {
         return agenciaConta;
@@ -22,6 +29,14 @@ public class Conta {
 
     public void setAgenciaConta(String agenciaConta) {
         this.agenciaConta = agenciaConta;
+    }
+
+    public Pessoa getCleinte() {
+        return cleinte;
+    }
+
+    public void setCleinte(Pessoa cleinte) {
+        this.cleinte = cleinte;
     }
 
     public Integer getNumeroConta() {
@@ -46,19 +61,21 @@ public class Conta {
                 "agenciaConta='" + agenciaConta + '\'' +
                 ", numeroConta=" + numeroConta +
                 ", saldo=" + saldo +
+                ", cleinte=" + cleinte +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Conta conta = (Conta) o;
-        return Objects.equals(numeroConta, conta.numeroConta) && Objects.equals(agenciaConta, conta.agenciaConta) && Objects.equals(saldo, conta.saldo);
+        return Objects.equals(numeroConta, conta.numeroConta) && Objects.equals(agenciaConta, conta.agenciaConta) && Objects.equals(saldo, conta.saldo) && Objects.equals(cleinte, conta.cleinte);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numeroConta, agenciaConta, saldo);
+        return Objects.hash(numeroConta, agenciaConta, saldo, cleinte);
     }
 }
